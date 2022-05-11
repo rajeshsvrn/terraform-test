@@ -115,7 +115,7 @@ resource "azurerm_mysql_server" "rds" {
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 }
 
-#Storage Accountyes
+#Storage Account
 
 
 resource "azurerm_storage_account" "st1" {
