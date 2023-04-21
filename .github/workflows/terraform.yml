@@ -8,15 +8,14 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v3"
-
-
-  - name: Set up Terraform
-    uses: hashicorp/setup-terraform@v1
-    with:
-      terraform_version: 1.0.8
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+      - uses: actions/checkout@v3
+      
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.8
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
 
 
