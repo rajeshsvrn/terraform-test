@@ -1,14 +1,6 @@
 name: GitHub Actions Workload Identity Demo
 on: [push]
 
-  - name: Set Google Cloud credentials
-    run: |
-      echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > key.json
-      export GOOGLE_APPLICATION_CREDENTIALS=$(C:\Users\RASUVARN\Downloads\terraform-test-384414-24065153a16a.json)
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-
-      
 permissions:
     contents: "read"
     id-token: "write"
@@ -17,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v3"
+
+
+  - name: Set up Terraform
+    uses: hashicorp/setup-terraform@v1
+    with:
+      terraform_version: 1.0.8
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+
 
 
 
