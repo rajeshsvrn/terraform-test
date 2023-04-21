@@ -1,5 +1,14 @@
 name: GitHub Actions Workload Identity Demo
 on: [push]
+
+  - name: Set Google Cloud credentials
+    run: |
+      echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > key.json
+      export GOOGLE_APPLICATION_CREDENTIALS=$(C:\Users\RASUVARN\Downloads\terraform-test-384414-24065153a16a.json)
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      
 permissions:
     contents: "read"
     id-token: "write"
@@ -9,12 +18,6 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
 
-  - name: Set Google Cloud credentials
-    run: |
-      echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > key.json
-      export GOOGLE_APPLICATION_CREDENTIALS=$(C:\Users\RASUVARN\Downloads\terraform-test-384414-24065153a16a.json)
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
 
       - id: "auth"
@@ -23,6 +26,8 @@ jobs:
         with:
           workload_identity_provider: projects/129781850284/locations/global/workloadIdentityPools/github-pool/providers/github-provider
           service_account: terraform-sa@terraform-test-384414.iam.gserviceaccount.com
+
+
 
 
 
