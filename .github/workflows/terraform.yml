@@ -30,7 +30,7 @@ jobs:
 
       - name: Terraform apply
         run: terraform apply -auto-approve 
-        working-directory: ../erraform-test
+        working-directory: ../terraform-test
          
         
 
